@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping, Protocol, Sequence, runtime_checkable
 
-from .contracts import EnergyProfile, HardwareProfile, ModelSelection
+from ..contracts import EnergyProfile, HardwareProfile, ModelSelection
 
 
 @dataclass(frozen=True)

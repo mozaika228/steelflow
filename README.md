@@ -75,7 +75,3 @@ MIT. See `LICENSE`.
 ## Contributing
 
 See `CONTRIBUTING.md`.
-
-## Security
-
-See `SECURITY.md`.
