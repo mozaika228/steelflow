@@ -7,7 +7,7 @@ from dataclasses import dataclass
 from typing import Mapping, Sequence
 
 from .base import QueryRewriter, RAGPipeline, Reranker, Retriever
-from .models import RAGContext, RetrievalItem
+from .models import RetrievalItem
 
 
 @dataclass(frozen=True)
