@@ -58,8 +58,8 @@ SteelFlow automatically selects the best combination of quantization, backend, a
 
 ## Why This Is Hard (and Worth It)
 
-- Not just a wrapper — a unified system (inference + RAG + agents + observability + self-improvement)
-- 100% local execution — no external APIs
+- Not just a wrapper - a unified system (inference + RAG + agents + observability + self-improvement)
+- 100% local execution - no external APIs
 - Hardware-aware adaptation
 - One API for all major engines (vLLM, exllama, torch.compile, llama.cpp)
 - Fine-tuning from your logs (LoRA/DPO/ORPO)
