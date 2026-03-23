@@ -78,8 +78,21 @@ def _normalize_items(items: Sequence[Mapping[str, object]]) -> Sequence[Retrieva
             RetrievalItem(
                 id=str(item.get("id", "")),
                 text=str(item.get("text", "")),
-                score=float(item.get("score", 0.0)),
-                metadata=dict(item.get("metadata", {})),
+                score=_to_float(item.get("score", 0.0)),
+                metadata=_to_metadata(item.get("metadata", {})),
             )
         )
     return normalized
+
+
+def _to_float(value: object) -> float:
+    try:
+        return float(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _to_metadata(value: object) -> Mapping[str, object]:
+    if isinstance(value, Mapping):
+        return dict(value)
+    return {}
