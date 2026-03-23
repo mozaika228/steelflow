@@ -90,14 +90,14 @@ def _extract_items(source: object) -> Sequence[Mapping[str, object]]:
         value = source.get("items", [])
         return _ensure_sequence(value)
     if hasattr(source, "items"):
-        value = source.items  # type: ignore[attr-defined]
+        value = source.items
         return _ensure_sequence(value)
     return []
 
 
 def _ensure_sequence(value: object) -> Sequence[Mapping[str, object]]:
     if isinstance(value, Sequence):
-        return value  # type: ignore[return-value]
+        return value
     return []
 
 
