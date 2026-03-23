@@ -13,6 +13,7 @@ from .contracts import (
     RerankResult,
     RetrievalResult,
 )
+from .observability import Observability
 from .plugins import PluginKind, PluginRegistry, PluginSpec
 from .rag import DefaultRAGPipeline, Index
 from .strategy import ExecutionPlan, HealthPolicy, RetryPolicy, SelectionPolicy, Strategy
@@ -35,6 +36,7 @@ __all__ = [
     "QuantizationSpec",
     "RerankResult",
     "RetrievalResult",
+    "Observability",
     "PluginKind",
     "PluginRegistry",
     "PluginSpec",
