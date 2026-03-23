@@ -1,0 +1,43 @@
+﻿[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "steelflow"
+version = "0.1.0"
+description = "Local-first LLM runtime and RAG/agent stack with hardware-aware optimization"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+  { name = "SteelFlow Contributors" }
+]
+keywords = ["llm", "rag", "agents", "local", "inference", "observability"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only"
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.4",
+  "ruff>=0.4",
+  "mypy>=1.8"
+]
+
+[project.urls]
+Homepage = "https://github.com/mozaika228/steelflow"
+Repository = "https://github.com/mozaika228/steelflow"
+
+[project.scripts]
+steelflow = "steelflow.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
