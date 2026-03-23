@@ -7,17 +7,17 @@ from typing import Iterable, Mapping, Sequence, cast
 from .base import PluginSpec
 
 try:
-    from importlib.metadata import entry_points
+    from importlib.metadata import EntryPoint, entry_points
 except ImportError:  # pragma: no cover
-    from importlib_metadata import entry_points  # type: ignore
+    from importlib_metadata import EntryPoint, entry_points  # type: ignore
 
 
 def discover_entry_points(group: str = "steelflow.plugins") -> Iterable[PluginSpec]:
     eps = entry_points()
     if hasattr(eps, "select"):
-        selected = eps.select(group=group)
+        selected: Iterable[EntryPoint] = eps.select(group=group)
     else:
-        legacy = cast(Mapping[str, Sequence[object]], eps)
+        legacy = cast(Mapping[str, Sequence[EntryPoint]], eps)
         selected = legacy.get(group, ())
 
     for ep in selected:
