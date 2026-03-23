@@ -13,6 +13,7 @@ from .contracts import (
     RerankResult,
     RetrievalResult,
 )
+from .plugins import PluginKind, PluginRegistry, PluginSpec
 from .version import __version__
 
 __all__ = [
@@ -32,4 +33,7 @@ __all__ = [
     "QuantizationSpec",
     "RerankResult",
     "RetrievalResult",
+    "PluginKind",
+    "PluginRegistry",
+    "PluginSpec",
 ]
