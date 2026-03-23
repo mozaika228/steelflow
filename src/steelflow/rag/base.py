@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Mapping, Protocol, runtime_checkable
 
-from ..contracts import RetrievalResult, RerankResult
+from ..contracts import RerankResult, RetrievalResult
 
 
 @runtime_checkable

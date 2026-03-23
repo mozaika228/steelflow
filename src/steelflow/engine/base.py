@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Mapping, Protocol, runtime_checkable, Sequence
+from typing import Mapping, Protocol, Sequence, runtime_checkable
 
 from ..contracts import (
     EmbeddingResult,

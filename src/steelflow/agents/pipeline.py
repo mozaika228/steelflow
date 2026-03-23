@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Callable, Mapping, Protocol, Sequence
 
-from .base import AgentPipeline, Tool
 from ..contracts import AgentStepResult
+from .base import AgentPipeline, Tool
 
 
 class AgentStep(Protocol):
