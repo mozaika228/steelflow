@@ -90,7 +90,7 @@ def _extract_items(source: object) -> Sequence[Mapping[str, object]]:
         value = source.get("items", [])
         return _ensure_sequence(value)
     if hasattr(source, "items"):
-        value = getattr(source, "items")
+        value = source.items  # type: ignore[attr-defined]
         return _ensure_sequence(value)
     return []
 
