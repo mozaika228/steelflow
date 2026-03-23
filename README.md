@@ -68,6 +68,10 @@ SteelFlow automatically selects the best combination of quantization, backend, a
 
 SteelFlow is under active development. The current repository provides the initial scaffold and public roadmap.
 
+## Documentation
+
+See `docs/README.md` and `examples/` for runnable snippets.
+
 ## License
 
 MIT. See `LICENSE`.
