@@ -46,14 +46,14 @@ class DefaultRAGPipeline(RAGPipeline):
         retrieval = self._retriever.retrieve(retrieval_query, **kwargs)
         timings["retrieve"] = (time.perf_counter() - start) * 1000
 
-        retrieved_items = _normalize_items(retrieval.items)
+        retrieved_items = _normalize_items(_extract_items(retrieval))
         reranked_items = retrieved_items
 
         if self._reranker is not None:
             start = time.perf_counter()
             reranked = self._reranker.rerank(retrieval_query, retrieval)
             timings["rerank"] = (time.perf_counter() - start) * 1000
-            reranked_items = _normalize_items(reranked.items)
+            reranked_items = _normalize_items(_extract_items(reranked))
 
         output = PipelineOutput(
             query=query,
@@ -83,6 +83,22 @@ def _normalize_items(items: Sequence[Mapping[str, object]]) -> Sequence[Retrieva
             )
         )
     return normalized
+
+
+def _extract_items(source: object) -> Sequence[Mapping[str, object]]:
+    if isinstance(source, Mapping):
+        value = source.get("items", [])
+        return _ensure_sequence(value)
+    if hasattr(source, "items"):
+        value = getattr(source, "items")
+        return _ensure_sequence(value)
+    return []
+
+
+def _ensure_sequence(value: object) -> Sequence[Mapping[str, object]]:
+    if isinstance(value, Sequence):
+        return value  # type: ignore[return-value]
+    return []
 
 
 def _to_float(value: object) -> float:
