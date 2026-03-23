@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Mapping, Sequence, cast
 
 from .base import PluginSpec
 
@@ -17,7 +17,8 @@ def discover_entry_points(group: str = "steelflow.plugins") -> Iterable[PluginSp
     if hasattr(eps, "select"):
         selected = eps.select(group=group)
     else:
-        selected = eps.get(group, [])
+        legacy = cast(Mapping[str, Sequence[object]], eps)
+        selected = legacy.get(group, ())
 
     for ep in selected:
         spec = ep.load()
