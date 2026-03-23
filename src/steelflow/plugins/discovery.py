@@ -15,12 +15,12 @@ except ImportError:  # pragma: no cover
 def discover_entry_points(group: str = "steelflow.plugins") -> Iterable[PluginSpec]:
     eps = entry_points()
     if hasattr(eps, "select"):
-        selected: Iterable[EntryPoint] = eps.select(group=group)
+        selected_eps: Iterable[EntryPoint] = eps.select(group=group)
     else:
         legacy = cast(Mapping[str, Sequence[EntryPoint]], eps)
-        selected = legacy.get(group, ())
+        selected_eps = legacy.get(group, ())
 
-    for ep in selected:
+    for ep in selected_eps:
         spec = ep.load()
         if not isinstance(spec, PluginSpec):
             raise TypeError(f"Entry point {ep.name} did not return PluginSpec")
