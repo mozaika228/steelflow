@@ -14,6 +14,7 @@ from .contracts import (
     RetrievalResult,
 )
 from .plugins import PluginKind, PluginRegistry, PluginSpec
+from .rag import DefaultRAGPipeline, Index
 from .strategy import ExecutionPlan, HealthPolicy, RetryPolicy, SelectionPolicy, Strategy
 from .version import __version__
 
@@ -37,6 +38,8 @@ __all__ = [
     "PluginKind",
     "PluginRegistry",
     "PluginSpec",
+    "DefaultRAGPipeline",
+    "Index",
     "ExecutionPlan",
     "HealthPolicy",
     "RetryPolicy",

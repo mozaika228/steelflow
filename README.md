@@ -1,6 +1,6 @@
 ﻿# SteelFlow
 
-SteelFlow is a lightweight, high-performance library for running large language models **locally** in 2026.
+SteelFlow is a lightweight, high-performance library for running large language models **locally**.
 No external APIs. No cloud lock-in. Maximum efficiency on your hardware.
 
 ## Key Capabilities
@@ -60,7 +60,7 @@ SteelFlow automatically selects the best combination of quantization, backend, a
 
 - Not just a wrapper — a unified system (inference + RAG + agents + observability + self-improvement)
 - 100% local execution — no external APIs
-- Hardware-aware adaptation (still rare even in 2026)
+- Hardware-aware adaptation
 - One API for all major engines (vLLM, exllama, torch.compile, llama.cpp)
 - Fine-tuning from your logs (LoRA/DPO/ORPO)
 
