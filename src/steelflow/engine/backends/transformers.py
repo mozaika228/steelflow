@@ -29,8 +29,8 @@ class TransformersBackend(Engine):
     def __init__(self, config: TransformersConfig) -> None:
         self._config = config
         try:
-            import torch  # type: ignore
-            from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
+            import torch
+            from transformers import AutoModelForCausalLM, AutoTokenizer
 
             self._torch = torch
             self._tokenizer = AutoTokenizer.from_pretrained(config.model_name)
@@ -58,7 +58,11 @@ class TransformersBackend(Engine):
         energy: EnergyProfile,
         preferences: Mapping[str, object],
     ) -> ModelSelection:
-        model = ModelSpec(name=self._config.model_name, context_length=2048, parameters_b=None)
+        model = ModelSpec(
+            name=self._config.model_name,
+            context_length=2048,
+            parameters_b=None,
+        )
         quant = QuantizationSpec(scheme="fp16", bits=None)
         return ModelSelection(
             model=model,
@@ -72,11 +76,11 @@ class TransformersBackend(Engine):
         inputs = self._tokenizer(prompt, return_tensors="pt")
         output = self._model.generate(
             **inputs,
-            max_new_tokens=int(kwargs.get("max_new_tokens", 128)),
+            max_new_tokens=_to_int(kwargs.get("max_new_tokens", 128)),
         )
         text = self._tokenizer.decode(output[0], skip_special_tokens=True)
         latency_ms = (time.perf_counter() - start) * 1000
-        tokens = int(output.shape[-1] - inputs["input_ids"].shape[-1])
+        tokens = _to_int(output.shape[-1] - inputs["input_ids"].shape[-1])
         return GenerationResult(
             text=text,
             tokens_generated=tokens,
@@ -86,3 +90,10 @@ class TransformersBackend(Engine):
 
     def embed(self, texts: Sequence[str], **kwargs: object) -> EmbeddingResult:
         raise BackendUnavailableError("Embedding not supported in this minimal backend")
+
+
+def _to_int(value: object) -> int:
+    try:
+        return int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return 0

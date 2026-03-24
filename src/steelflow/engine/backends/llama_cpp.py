@@ -29,7 +29,7 @@ class LlamaCppBackend(Engine):
     def __init__(self, config: LlamaCppConfig) -> None:
         self._config = config
         try:
-            from llama_cpp import Llama  # type: ignore
+            from llama_cpp import Llama
 
             self._llama = Llama(model_path=config.model_path, n_ctx=config.n_ctx)
         except Exception as exc:  # pragma: no cover

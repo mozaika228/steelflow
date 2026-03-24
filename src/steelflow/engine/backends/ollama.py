@@ -62,7 +62,7 @@ class OllamaBackend(Engine):
         data = _post_json(f"{self._config.base_url}/api/generate", payload)
         latency_ms = (time.perf_counter() - start) * 1000
         text = str(data.get("response", ""))
-        tokens = int(data.get("eval_count", 0) or 0)
+        tokens = _to_int(data.get("eval_count", 0))
         return GenerationResult(
             text=text,
             tokens_generated=tokens,
@@ -94,3 +94,10 @@ def _post_json(url: str, payload: Mapping[str, object]) -> Mapping[str, object]:
         return json.loads(raw)
     except Exception as exc:  # pragma: no cover
         raise BackendUnavailableError(f"Ollama request failed: {exc}") from exc
+
+
+def _to_int(value: object) -> int:
+    try:
+        return int(value)  # type: ignore[arg-type]
+    except (TypeError, ValueError):
+        return 0
