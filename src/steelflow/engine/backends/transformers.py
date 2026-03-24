@@ -6,7 +6,6 @@ import time
 from dataclasses import dataclass
 from typing import Mapping, Sequence
 
-from ..base import Engine
 from ...contracts import (
     EmbeddingResult,
     EnergyProfile,
@@ -16,6 +15,7 @@ from ...contracts import (
     ModelSpec,
     QuantizationSpec,
 )
+from ..base import Engine
 from .base import BackendInfo, BackendUnavailableError
 
 
@@ -29,8 +29,8 @@ class TransformersBackend(Engine):
     def __init__(self, config: TransformersConfig) -> None:
         self._config = config
         try:
-            from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
             import torch  # type: ignore
+            from transformers import AutoModelForCausalLM, AutoTokenizer  # type: ignore
 
             self._torch = torch
             self._tokenizer = AutoTokenizer.from_pretrained(config.model_name)

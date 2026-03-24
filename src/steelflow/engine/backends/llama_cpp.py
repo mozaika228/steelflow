@@ -6,7 +6,6 @@ import time
 from dataclasses import dataclass
 from typing import Mapping, Sequence
 
-from ..base import Engine
 from ...contracts import (
     EmbeddingResult,
     EnergyProfile,
@@ -16,6 +15,7 @@ from ...contracts import (
     ModelSpec,
     QuantizationSpec,
 )
+from ..base import Engine
 from .base import BackendInfo, BackendUnavailableError
 
 

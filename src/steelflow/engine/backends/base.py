@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Mapping
 
-from ..base import Engine
 from ...contracts import EmbeddingResult, GenerationResult
+from ..base import Engine
 
 
 @dataclass(frozen=True)
