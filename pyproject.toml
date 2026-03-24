@@ -29,6 +29,12 @@ dev = [
   "mypy>=1.8"
 ]
 
+inference = [
+  "llama-cpp-python>=0.2.0",
+  "transformers>=4.40",
+  "torch>=2.2"
+]
+
 [project.urls]
 Homepage = "https://github.com/mozaika228/steelflow"
 Repository = "https://github.com/mozaika228/steelflow"

@@ -13,6 +13,7 @@ from .contracts import (
     RerankResult,
     RetrievalResult,
 )
+from .engine import builtin_engine_plugins
 from .observability import Observability
 from .plugins import PluginKind, PluginRegistry, PluginSpec
 from .rag import DefaultRAGPipeline, Index
@@ -36,6 +37,7 @@ __all__ = [
     "QuantizationSpec",
     "RerankResult",
     "RetrievalResult",
+    "builtin_engine_plugins",
     "Observability",
     "PluginKind",
     "PluginRegistry",
