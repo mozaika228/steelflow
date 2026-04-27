@@ -30,9 +30,11 @@ dev = [
 ]
 
 inference = [
+  "exllamav2>=0.2.0",
   "llama-cpp-python>=0.2.0",
   "transformers>=4.40",
-  "torch>=2.2"
+  "torch>=2.2",
+  "vllm>=0.5.0"
 ]
 
 [project.urls]

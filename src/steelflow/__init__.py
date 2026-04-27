@@ -13,7 +13,16 @@ from .contracts import (
     RerankResult,
     RetrievalResult,
 )
-from .engine import builtin_engine_plugins
+from .engine import (
+    CancellationToken,
+    InferenceCancelledError,
+    InferenceRuntime,
+    RuntimeConfig,
+    builtin_engine_plugins,
+)
+from .engine import (
+    RetryPolicy as InferenceRetryPolicy,
+)
 from .observability import Observability
 from .plugins import PluginKind, PluginRegistry, PluginSpec
 from .rag import DefaultRAGPipeline, Index
@@ -37,6 +46,11 @@ __all__ = [
     "QuantizationSpec",
     "RerankResult",
     "RetrievalResult",
+    "CancellationToken",
+    "InferenceCancelledError",
+    "InferenceRuntime",
+    "InferenceRetryPolicy",
+    "RuntimeConfig",
     "builtin_engine_plugins",
     "Observability",
     "PluginKind",
