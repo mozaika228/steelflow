@@ -80,7 +80,7 @@ class InferenceRuntime:
         for name, backend in self._backends.items():
             try:
                 if hasattr(backend, "warmup"):
-                    backend.warmup(prompt=prompt)  # type: ignore[attr-defined]
+                    backend.warmup(prompt=prompt)
                 else:
                     backend.generate(prompt, max_new_tokens=1)
                 result[name] = True
@@ -133,7 +133,7 @@ class InferenceRuntime:
         backend = self._backends[backend_name]
 
         if hasattr(backend, "generate_stream"):
-            for chunk in backend.generate_stream(prompt, **kwargs):  # type: ignore[attr-defined]
+            for chunk in backend.generate_stream(prompt, **kwargs):
                 self._ensure_not_cancelled(cancellation_token)
                 yield chunk
             return
@@ -194,7 +194,7 @@ class InferenceRuntime:
     def _backend_healthy(backend: Engine) -> bool:
         try:
             if hasattr(backend, "health_check"):
-                return bool(backend.health_check())  # type: ignore[attr-defined]
+                return bool(backend.health_check())
             caps = backend.capabilities()
             return bool(caps.get("generate") or caps.get("embed"))
         except Exception:
