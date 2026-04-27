@@ -14,6 +14,8 @@ class HardwareProfile:
     vram_gb: float | None
     supports_cuda: bool
     supports_rocm: bool
+    numa_nodes: int = 1
+    cpu_arch: str | None = None
 
 
 @dataclass(frozen=True)
@@ -21,6 +23,8 @@ class EnergyProfile:
     on_battery: bool
     battery_percent: int | None
     thermal_throttling: bool
+    temperature_c: float | None = None
+    low_power_mode: bool = False
 
 
 @dataclass(frozen=True)
